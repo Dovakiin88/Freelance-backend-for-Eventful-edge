@@ -52,6 +52,22 @@ def update_template(current_user_token, id):
     response = template_schema.dump(template)
     return jsonify(response)
 
+#update user
+@api.route('/user<id>', methods = ['POST', 'PUT'])
+@token_required
+def update_user(current_user_token, id):
+    user = User.query.get(id)
+    user.first_name = request.json['first_name']
+    user.last_name = request.json['last_name']
+    user.hoa = request.json['hoa']
+    user.phone_number = request.json['phone_number']
+    user.email = request.json['email']
+    user.user_token = current_user_token.token
+
+    db.session.commit()
+    response = user_schema.dump(user)
+    return jsonify(response)
+
 #delete template
 @api.route('/templates/<id>', methods = ['DELETE'])
 @token_required
