@@ -17,7 +17,7 @@ def create_template(current_user_token):
     template_volume_number = request.json['template_volume_number']
     template_date = request.json['template_date']
     template_hoa = request.json['template_hoa']
-    user_token = current_user_token
+    user_token = current_user_token.token
 
     template = Template(name, template_issue_number, template_volume_number, template_date, template_hoa, user_token=user_token)
 

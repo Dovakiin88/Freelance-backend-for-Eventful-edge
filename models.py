@@ -55,9 +55,9 @@ class User(db.Model, UserMixin):
 class Template(db.Model):
     id = db.Column(db.String, primary_key=True)
     name = db.Column(db.String(250), nullable=False)
-    template_issue_number = db.Column(db.Integer, nullable = False)
-    template_volume_number = db.Column(db.Integer, nullable = False)
-    template_date = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.now, nullable=False)
+    template_issue_number = db.Column(db.String, nullable = False)
+    template_volume_number = db.Column(db.String, nullable = False)
+    template_date = db.Column(db.String(50), nullable=False)
     template_hoa = db.Column(db.String(200), nullable=False)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable=False)
 
