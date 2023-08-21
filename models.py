@@ -80,5 +80,12 @@ class TemplateSchema(ma.Schema):
     class Meta:
         fields= ['id', 'name', 'template_issue_number', 'template_volume_number', 'template_date', 'template_hoa']
 
+class UserSchema(ma.Schema):
+    class Meta:
+        fields = ['id', 'first_name', 'last_name', 'hoa', 'phone_number', 'email']
+
 template_schema= TemplateSchema()
 templates_schema=TemplateSchema(many=True)
+
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)

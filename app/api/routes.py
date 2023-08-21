@@ -1,6 +1,6 @@
 from flask import Blueprint, request, Flask, jsonify, render_template
 from helpers import token_required
-from models import db, User, Template, template_schema, templates_schema
+from models import db, User, Template, template_schema, templates_schema, user_schema
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
@@ -60,5 +60,15 @@ def delete_template(current_user_token, id):
     db.session.delete(template)
     db.session.commit()
     response = template_schema.dump(template)
+    return jsonify(response)
+
+#delete user
+@api.route('/user/<id>', methods = ['DELETE'])
+@token_required
+def delete_user(current_user_token, id):
+    user = User.query.get(id)
+    db.session.delete(user)
+    db.session.commit()
+    response = user_schema.dump(user)
     return jsonify(response)
 
