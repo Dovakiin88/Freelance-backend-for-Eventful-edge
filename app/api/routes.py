@@ -8,6 +8,9 @@ api = Blueprint('api', __name__, url_prefix='/api')
 def getdata():
     return{'Skyrim TEST': 'Awesomeness TEST'}
 
+#Save template
+@api.route('/savedte')
+
 #add to database
 @api.route('/templates', methods = ['POST'])
 @token_required
@@ -46,6 +49,7 @@ def update_template(current_user_token, id):
     template.template_volume_number = request.json['template_volume_number']
     template.template_date = request.json['template_date']
     template.template_hoa = request.json['template_hoa']
+    template.saved_template = request.json['saved_template']
     template.user_token = current_user_token.token
 
     db.session.commit()

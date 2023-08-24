@@ -54,11 +54,12 @@ class User(db.Model, UserMixin):
     
 class Template(db.Model):
     id = db.Column(db.String, primary_key=True)
-    name = db.Column(db.String(250), nullable=False)
-    template_issue_number = db.Column(db.String, nullable = False)
-    template_volume_number = db.Column(db.String, nullable = False)
-    template_date = db.Column(db.String(50), nullable=False)
-    template_hoa = db.Column(db.String(200), nullable=False)
+    name = db.Column(db.String(250), nullable=True)
+    template_issue_number = db.Column(db.String, nullable = True)
+    template_volume_number = db.Column(db.String, nullable = True)
+    template_date = db.Column(db.String(50), nullable=True)
+    template_hoa = db.Column(db.String(200), nullable=True)
+    saved_template = db.Column(db.JSON)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable=False)
 
     def __init__(self, name, template_issue_number, template_volume_number, template_date, template_hoa, user_token ):
