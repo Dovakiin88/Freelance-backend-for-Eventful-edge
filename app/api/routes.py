@@ -35,7 +35,7 @@ def create_template(current_user_token):
 @token_required
 def get_template(current_user_token):
     a_user = current_user_token.token
-    hoaTemps = Template.query.filter_by(user_token = a_user.all())
+    hoaTemps = Template.query.filter_by(user_token = a_user).all()
     response = template_schema.dump(hoaTemps)
     return jsonify(response)
 
